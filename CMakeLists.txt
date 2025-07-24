@@ -222,6 +222,11 @@ else()
     set(GPU_SOURCES)
 endif()
 
+# Add this near the bottom of CMakeLists.txt, before any target creation
+if(DEFINED ENV{BNB_ENABLE_INSTRUMENTATION})
+    message(STATUS "🔬 Enabling BitsAndBytes kernel instrumentation")
+    add_compile_definitions(BNB_ENABLE_INSTRUMENTATION)
+endif()
 
 if(WIN32)
     # Export all symbols
